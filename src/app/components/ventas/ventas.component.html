@@ -1,0 +1,55 @@
+<div class="card bg-light mb-3">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+    <button class="btn btn-primary my-2" routerLink="/ventas/form">Crear</button>
+    <div class="alert alert-info" *ngIf="ventas?.length == 0">
+      No hay ventas en el sistema
+    </div>
+    <div *ngIf="ventas?.length > 0">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Cliente</th>
+            <th>Valor Venta</th>
+            <th>Estado</th>
+            <th>Fecha Creación</th>
+            <th>Ver</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let venta of ventas">
+            <td>{{venta.saleId}}</td>
+            <td>{{venta.client.name}} {{venta.client.lastname}}</td>
+            <td>{{venta.purchaseValue | currency}}</td>
+            <td *ngIf="venta.active">
+              <button class="btn btn-info btn-sm" (click)="cambiarEstado(venta)">Anular Venta</button>
+            </td>
+            <td *ngIf="!venta.active">
+              <button class="btn btn-success btn-sm" (click)="cambiarEstado(venta)">Activar Venta</button>
+            </td>
+            <td>{{venta.creationDate | date}}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" [routerLink]="['/ventas/detalle', venta.saleId]">Ver</button>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="eliminar(venta)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [length]="totalRegistros"
+                    [pageSize]="totalPorPagina"
+                    [pageIndex]="paginaActual"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page) = "paginar($event)"
+                    showFirstLastButtons
+                    class="float-left mx-2"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+
+

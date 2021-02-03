@@ -1,0 +1,60 @@
+<div class="card bg-light mb-3">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+    <button class="btn btn-primary my-2" routerLink="/clientes/form">Crear</button>
+    <div class="alert alert-info" *ngIf="clientes?.length == 0">
+      No hay clientes en el sistema
+    </div>
+    <div *ngIf="clientes?.length > 0">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Documento</th>
+            <th>Nombre Completo</th>
+            <th>Direccion</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Estado</th>
+            <th>Fecha Creación</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes">
+            <td>{{cliente.clientId}}</td>
+            <td>{{cliente.document}}</td>
+            <td>{{cliente.name}} {{cliente.lastname}}</td>
+            <td>{{cliente.address}}</td>
+            <td>{{cliente.email}}</td>
+            <td>{{cliente.phone}}</td>
+            <td *ngIf="cliente.active">
+              <button class="btn btn-info btn-sm" (click)="cambiarEstado(cliente)">Desactivar</button>
+            </td>
+            <td *ngIf="!cliente.active">
+              <button class="btn btn-success btn-sm" (click)="cambiarEstado(cliente)">Activar</button>
+            </td>
+            <td>{{cliente.creationDate | date}}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" [routerLink]="['/clientes/form', cliente.clientId]">Editar</button>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="eliminar(cliente)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [length]="totalRegistros"
+                    [pageSize]="totalPorPagina"
+                    [pageIndex]="paginaActual"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page) = "paginar($event)"
+                    showFirstLastButtons
+                    class="float-left mx-2"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+
