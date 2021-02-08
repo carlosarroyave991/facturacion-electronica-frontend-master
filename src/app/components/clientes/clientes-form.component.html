@@ -2,7 +2,7 @@
   <div class="card-header">{{titulo}}</div>
   <div class="card-body">
     <button class="btn btn-secondary my-2" routerLink="/clientes">Volver</button>
-    <form autocomplete="off" #productoForm="ngForm">
+    <form autocomplete="off" #clienteForm="ngForm">
       <div class="form-group">
         <label for="document" id="document">Documento</label>
         <input [(ngModel)]="cliente.document" class="form-control" type="text" name="document" autofocus required minlength="9" maxlength="12" pattern="[0-9]{9,12}" #document="ngModel">
