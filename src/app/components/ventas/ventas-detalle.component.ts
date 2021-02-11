@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Venta } from 'src/app/models/venta';
 import { VentaService } from 'src/app/services/venta.service';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-ventas-detalle',
@@ -24,4 +25,19 @@ export class VentasDetalleComponent implements OnInit {
     });
   }
 
+  descargarPDF():void{
+    const opciones ={
+      filename: 'factura',
+      image: {type:'jpeg'},
+      html2canvas:{},
+      jsPDF: {orientation: 'landspace'}
+    };
+
+    const contenido: Element = document.getElementById('facturapdf');
+
+    html2pdf()
+    .from(contenido)
+    .set(opciones)
+    .save();
+  }
 }

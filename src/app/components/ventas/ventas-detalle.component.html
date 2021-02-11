@@ -2,6 +2,10 @@
   <div class="card-header">{{titulo}}</div>
   <div class="card-body">
     <button class="btn btn-secondary my-2" routerLink="/ventas">Volver</button>
+    <button class="btn btn-warning" (click)="descargarPDF()">
+      Descargar Factura
+    </button>
+    <div id="facturapdf">
     <ul class="list-group my-2" *ngIf="venta.client">
       <li class="list-group-item list-group-item-primary">Datos del Cliente</li>
       <li class="list-group-item">Nombre: {{venta.client.name}}</li>
@@ -37,5 +41,6 @@
       </tbody>
     </table>
     <h3 class="float-right" *ngIf="venta.saleProducts.length > 0"> Grant Total: <span class="badge badge-secondary">{{ venta.purchaseValue | currency }}</span></h3>
+    </div>
   </div>
 </div>

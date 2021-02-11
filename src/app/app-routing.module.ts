@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { VentasMensualesComponent } from './components/informes/ventas-mensuales/ventas-mensuales.component';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'ventas/form', component: VentasFormComponent},
   {path: 'ventas/detalle/:id', component: VentasDetalleComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'informes', component: VentasMensualesComponent},
 ];
 
 @NgModule({

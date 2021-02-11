@@ -15,6 +15,7 @@ import { ProductosFormComponent } from './components/productos/productos-form.co
 import { VentasFormComponent } from './components/ventas/ventas-form.component';
 import { VentasDetalleComponent } from './components/ventas/ventas-detalle.component';
 import { ClientesFormComponent } from './components/clientes/clientes-form.component';
+import { VentasMensualesComponent } from './components/informes/ventas-mensuales/ventas-mensuales.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ClientesFormComponent } from './components/clientes/clientes-form.compo
     VentasFormComponent,
     VentasDetalleComponent,
     ClientesFormComponent,
+    VentasMensualesComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { ClientesFormComponent } from './components/clientes/clientes-form.compo
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
